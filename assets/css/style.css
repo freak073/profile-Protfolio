@@ -52,17 +52,11 @@ body {
   overflow-x: hidden;
 }
 
-body::before { /* Subtle diagonal grid pattern reminiscent of reference */
+body::before { /* dialed down base pattern (main pattern now via canvas) */
   content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px),
-    radial-gradient(circle at 70% 20%, rgba(255,255,255,0.05), transparent 60%);
-  mix-blend-mode: overlay;
-  opacity: .5;
-  z-index: 0;
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle at 75% 25%, rgba(255,255,255,0.04), transparent 65%);
+  opacity: .25; mix-blend-mode: overlay;
 }
 
 
