@@ -230,38 +230,59 @@ strong { font-weight: 600; }
 .note__link:hover { text-decoration: underline; }
 .note__meta { font-size: .7rem; font-family: var(--font-heading); letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-dim); }
 
-/* Contact form */
-.contact-form { max-width: 640px; display: grid; gap: 1.2rem; margin-top: 1.2rem; }
-.form-field { display: flex; flex-direction: column; gap: .45rem; }
-label { font-family: var(--font-heading); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-dim); }
-input, textarea { 
-  background: var(--color-surface); 
-  border: 1px solid var(--color-border); 
-  color: var(--color-text); 
-  font: inherit; 
-  padding: .75rem .85rem; 
-  border-radius: var(--radius-sm); 
-  resize: vertical; 
-  transition: border-color .3s, background .3s, box-shadow .3s; 
+/* Contact info */
+.contact-info { 
+  max-width: 640px; 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 1.5rem; 
+  margin-top: 1.5rem; 
 }
 
-input:focus, textarea:focus { 
-  outline: none; 
-  border-color: var(--color-accent); 
-  box-shadow: var(--shadow-focus); 
-  background: var(--color-bg);
-}
-
-:root.light input:focus, 
-:root.light textarea:focus {
+.contact-item {
   background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  transition: transform .3s, box-shadow .3s;
 }
 
-.btn { background: var(--color-accent); border: none; color: #fff; padding: .75rem 1.25rem; font-family: var(--font-heading); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; border-radius: var(--radius-sm); cursor: pointer; transition: background .3s; }
-.btn:hover, .btn:focus { background: #003fcc; }
+.contact-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
 
-.form-footer { display: flex; flex-direction: column; gap: .65rem; }
-.privacy { margin: 0; }
+.contact-item h3 {
+  font-family: var(--font-heading);
+  font-size: .9rem;
+  letter-spacing: .05em;
+  margin: 0 0 .75rem 0;
+  color: var(--color-text-dim);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.contact-item h3 i {
+  color: var(--color-accent);
+  font-size: 1.1em;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: .95rem;
+}
+
+.contact-item a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color .3s;
+}
+
+.contact-item a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
 
 /* Footer */
 .site-footer { padding: 3rem 0 4rem; border-top: 1px solid var(--color-border); font-size: .8rem; }
