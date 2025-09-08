@@ -69,27 +69,34 @@ function findNearestElement(p, x, y) {
 
 function initializeBackground() {
   const script = function(p) {
-    var zoff = 10;
-    var inc = 0.02;
-    var rows;
-    var cols;
-    var scl = 15;
-    var bg = '#000000';
-    var mx = p.mouseX;
-    var my1 = p.mouseY;
-    var mx1 = p.mouseX;
-    var my = p.mouseY;
-    var lag = 75;
-    var lagMouse = 10;
+    let zoff = 10;
+    let inc = 0.02;
+    let scl = 15;
+    let bg = '#000000';
+    let lightBg = '#fdfdfd';
+    let mx = p.mouseX;
+    let my1 = p.mouseY;
+    let mx1 = p.mouseX;
+    let my = p.mouseY;
+    let lag = 75;
+    let lagMouse = 10;
     let mouse_speed = 0;
+    let isLightMode = false;
+    
+    // Theme detection function
+    function updateTheme() {
+      isLightMode = document.documentElement.classList.contains('light');
+      bg = isLightMode ? lightBg : '#000000';
+    }
     
     p.setup = function () {
       p.noiseSeed(1);
       p.createCanvas(p.windowWidth, p.windowHeight);
+      updateTheme();
       p.background(bg);
-
-      cols = p.floor(p.width/scl);
-      rows = p.floor(p.height/scl);
+      
+      // Listen for theme changes
+      document.addEventListener('themechange', updateTheme);
     }
     
     p.windowResized = function () {
@@ -99,9 +106,10 @@ function initializeBackground() {
     p.draw = function () {
       mouse_speed = p.dist(p.mouseX, p.mouseY, mx1, my1);
 
+      updateTheme(); // Update theme on each frame
       p.fill(bg);
       p.rect(0, 0, p.width, p.height);
-      var yoff = 0;
+      let yoff = 0;
 
       mx1 += (p.mouseX-mx1)/lagMouse
       my1 += (p.mouseY-my1)/lagMouse
@@ -118,20 +126,26 @@ function initializeBackground() {
       let tt = 1- p.min(1, p.map(distance_from_mouse_nearest, 0, 36, 0, 1))
       breath = breath*0.0001 * tt
       
-      for (var y = 0; y < p.height; y += scl){
-        var xoff = 0;
-        for (var x = 0; x < p.width; x += scl){
+      for (let y = 0; y < p.height; y += scl){
+        let xoff = 0;
+        for (let x = 0; x < p.width; x += scl){
 
           let distance_from_mouse_pos = p.dist(mx, my, x, y);
           let distance_from_content = p.dist(p.width*.3, p.height*.2, x, y);
           let distance_from_content2 = p.dist(p.width*.4, p.height*.6, x, y);
 
           let noisy_threshold =  p.noise(xoff, yoff, p.frameCount*.0005); 
-          var perlin = p.noise(xoff, yoff, zoff) + 0.1*noisy_threshold;
+          let perlin = p.noise(xoff, yoff, zoff) + 0.1*noisy_threshold;
           
           let color_intensity = p.map(distance_from_mouse_pos * perlin, 0, 1500, 0, 255)
           color_intensity = p.round(color_intensity/20)*20
-          p.stroke(120, 100, 200, color_intensity);
+          
+          // Adjust colors based on theme
+          if (isLightMode) {
+            p.stroke(50, 80, 150, color_intensity * 0.6); // Darker blue, more subtle
+          } else {
+            p.stroke(120, 100, 200, color_intensity);
+          }
 
           let near_content3 = (distance_from_content2 > 900*noisy_threshold) 
           let near_content2 = (distance_from_content2 > 800*noisy_threshold) 
@@ -144,11 +158,20 @@ function initializeBackground() {
 
           if(perlin > 0.5 && nnn){
             let ff = p.map(distance_from_mouse_nearest, 0, 200, 80, 0)
-            p.stroke(255, 0, 0, ff);
+            if (isLightMode) {
+              p.stroke(220, 50, 50, ff * 0.8); // Softer red for light mode
+            } else {
+              p.stroke(255, 0, 0, ff);
+            }
             p.line(x, y, x+scl, y+scl);
           }
           
-          p.stroke(120, 100, 200, color_intensity);
+          // Reset to base color
+          if (isLightMode) {
+            p.stroke(50, 80, 150, color_intensity * 0.6);
+          } else {
+            p.stroke(120, 100, 200, color_intensity);
+          }
           
           if (perlin > 0.5 && perlin < 0.55 && mouse_near) {
             p.line(x, y, x+scl, y+scl);
@@ -182,10 +205,17 @@ function initializeBackground() {
   }
 
   // Remove existing canvas
-  document.getElementById('defaultCanvas0')?.remove();
+  const existingCanvas = document.getElementById('defaultCanvas0');
+  if (existingCanvas) {
+    existingCanvas.remove();
+  }
   
   // Create new p5 instance
-  new p5(script);
+  // eslint-disable-next-line new-cap, no-new
+  const bgSketch = new p5(script);
+  
+  // Store reference for potential cleanup
+  window.backgroundSketch = bgSketch;
 }
 
 // Initialize when ready
