@@ -34,6 +34,7 @@
       </button>
       <ul class="nav__list" id="navMenu">
         <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -79,15 +80,123 @@
     <!-- Skills -->
     <section id="skills" class="section" aria-labelledby="skillsTitle">
       <div class="container">
-        <h2 id="skillsTitle">Skills</h2>
-        <ul class="project-list" role="list" style="--gap:0.5rem">
-          <li><strong>Programming Languages:</strong> Python, Java, HTML/CSS, SQL, JavaScript (Basic)</li>
-          <li><strong>AI & Machine Learning:</strong> Machine Learning Fundamentals, Computer Vision, OpenCV, Scikit‑learn, TensorFlow (Basic), Data Analysis</li>
-          <li><strong>Frameworks & Tools:</strong> Spring Boot, NumPy, Pandas, Matplotlib, Git, MySQL, Jupyter Notebook</li>
-          <li><strong>Development Tools:</strong> VS Code, Eclipse, GitHub, Basic Linux Commands</li>
-          <li><strong>Core Strengths:</strong> Problem Solving, Quick Learning, Team Collaboration, Attention to Detail, Project Management, Communication</li>
-          <li><strong>Academic Projects:</strong> Machine Learning Models, Computer Vision Applications, Web Development, Database Design</li>
-        </ul>
+        <h2 id="skillsTitle">Skills & Technologies</h2>
+        
+        <!-- Programming Languages -->
+        <div class="skill-category">
+          <h3 class="skill-category-title">Programming Languages</h3>
+          <div class="skills-carousel">
+            <div class="skill-icon" data-tooltip="Python">
+              <i class="fab fa-python"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="Java">
+              <i class="fab fa-java"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="JavaScript">
+              <i class="fab fa-js-square"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="HTML5">
+              <i class="fab fa-html5"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="CSS3">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="SQL">
+              <i class="fas fa-database"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frameworks & Libraries -->
+        <div class="skill-category">
+          <h3 class="skill-category-title">Frameworks & Libraries</h3>
+          <div class="skills-carousel">
+            <div class="skill-icon" data-tooltip="Spring Boot">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="TensorFlow">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="NumPy">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="Pandas">
+              <i class="fas fa-table"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="OpenCV">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="Scikit-learn">
+              <i class="fas fa-chart-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div class="skill-category">
+          <h3 class="skill-category-title">Tools & Platforms</h3>
+          <div class="skills-carousel">
+            <div class="skill-icon" data-tooltip="Git">
+              <i class="fab fa-git-alt"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="GitHub">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="VS Code">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="MySQL">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="Jupyter">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="skill-icon" data-tooltip="Linux">
+              <i class="fab fa-linux"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Activity -->
+    <section id="github-activity" class="section" aria-labelledby="githubTitle">
+      <div class="container">
+        <h2 id="githubTitle">GitHub Activity</h2>
+        <div class="github-stats">
+          <div class="github-chart">
+            <h3>Contribution Graph</h3>
+            <div class="activity-grid">
+              <!-- This will be populated by JavaScript -->
+              <div class="activity-placeholder">
+                <i class="fab fa-github"></i>
+                <p>Loading GitHub activity...</p>
+                <a href="https://github.com/freak073" target="_blank" rel="noopener" class="github-link">
+                  View on GitHub <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="github-stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">Repositories</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">150+</div>
+              <div class="stat-label">Commits</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Languages</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2024</div>
+              <div class="stat-label">Active Since</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -207,6 +316,8 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js" defer></script>
   <!-- Background sketch -->
   <script src="assets/js/background.js" defer></script>
+  <!-- Skills interaction -->
+  <script src="assets/js/skills.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
