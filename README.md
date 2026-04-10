@@ -75,8 +75,6 @@ Open `index.html` directly or serve locally (for example with `npx serve .` or a
 
 ## License
 
-Your preferred license (MIT recommended). Currently unlicensed – add one if you plan to open source.
+Your preferred license (MIT recommended). Currently unlicensed
 
 ---
-
-Feel free to ask for a React / Next.js variant or MDX blog integration later.
